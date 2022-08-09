@@ -12,6 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - run: ls -la /home/runner
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -21,7 +22,7 @@ jobs:
       - run: node make.js build --task AzureResourceGroupDeploymentV2
       - run: node make.js test --task AzureResourceManagerTemplateDeploymentV3
         env:
-          AGENT_TEMPDIRECTORY: ${{env.RUNNER_TEMP}}
+          AGENT_TEMPDIRECTORY: /home/runner/temp
       - run: node make.js test --task AzureResourceGroupDeploymentV2
         env:
-          AGENT_TEMPDIRECTORY: ${{env.RUNNER_TEMP}}
+          AGENT_TEMPDIRECTORY: /home/runner/temp
