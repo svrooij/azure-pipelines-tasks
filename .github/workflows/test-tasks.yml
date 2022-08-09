@@ -9,8 +9,7 @@ on:
 
 jobs:
   test:
-    env:
-      AGENT_TEMPDIRECTORY: ${{env.RUNNER_TEMP}}
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +20,8 @@ jobs:
       - run: node make.js build --task AzureResourceManagerTemplateDeploymentV3
       - run: node make.js build --task AzureResourceGroupDeploymentV2
       - run: node make.js test --task AzureResourceManagerTemplateDeploymentV3
+        env:
+          AGENT_TEMPDIRECTORY: $RUNNER_TEMP
       - run: node make.js test --task AzureResourceGroupDeploymentV2
+        env:
+          AGENT_TEMPDIRECTORY: $RUNNER_TEMP
