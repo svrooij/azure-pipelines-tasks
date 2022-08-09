@@ -332,14 +332,14 @@ exports.ensureTool = ensureTool;
 var installNode = function (nodeVersion) {
     switch (nodeVersion || '') {
         case '14':
-            nodeVersion = 'v14.10.1';
+            nodeVersion = 'v14.20.0';
             break;
         case '10':
-            nodeVersion = 'v10.21.0';
+            nodeVersion = 'v10.24.1';
             break;
         case '6':
         case '':
-            nodeVersion = 'v6.10.3';
+            nodeVersion = 'v6.17.1';
             break;
         case '5':
             nodeVersion = 'v5.10.1';
