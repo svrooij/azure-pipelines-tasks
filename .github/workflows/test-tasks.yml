@@ -1,0 +1,20 @@
+name: Test some tasks
+
+on:
+  push:
+    branches:
+      - custom-deploy-for-stale-pr
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: node make.js build --task AzureResourceManagerTemplateDeploymentV3
+      - run: node make.js build --task AzureResourceGroupDeploymentV2
+      - run: node make.js test --task AzureResourceManagerTemplateDeploymentV3
+      - run: node make.js test --task AzureResourceGroupDeploymentV2
