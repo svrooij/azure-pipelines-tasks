@@ -10,7 +10,7 @@ on:
 jobs:
   test:
     env:
-      AGENT_TEMPDIRECTORY: $RUNNER_TEMP
+      AGENT_TEMPDIRECTORY: ${{env.RUNNER_TEMP}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
