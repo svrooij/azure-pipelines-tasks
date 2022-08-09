@@ -12,7 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - run: ls -la /home/runner
+      - run: echo "Temp $RUNNER_TEMP"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
