@@ -5,8 +5,6 @@ on:
     branches:
       - custom-deploy-for-stale-pr
 
-
-
 jobs:
   test:
 
@@ -17,11 +15,13 @@ jobs:
         with:
           node-version: 10
       - run: npm ci
+
       - run: node make.js build --task AzureResourceManagerTemplateDeploymentV3
-      - run: node make.js build --task AzureResourceGroupDeploymentV2
       - run: node make.js test --task AzureResourceManagerTemplateDeploymentV3
         env:
           AGENT_TEMPDIRECTORY: /home/runner/work/_temp
+
+      - run: node make.js build --task AzureResourceGroupDeploymentV2
       - run: node make.js test --task AzureResourceGroupDeploymentV2
         env:
           AGENT_TEMPDIRECTORY: /home/runner/work/_temp
