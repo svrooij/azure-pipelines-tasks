@@ -5,6 +5,9 @@ on:
     branches:
       - custom-deploy-for-stale-pr
 
+env:
+  AGENT_TEMPDIRECTORY: ${{env.RUNNER_TEMP}}
+
 jobs:
   test:
     runs-on: ubuntu-latest
