@@ -848,6 +848,7 @@ CLI.adopt = function() {
 }
 
 CLI.genManifest = function() {
+    banner('Generating manifest with ' + taskList.length + ' tasks')
     var manifestPath = path.join(__dirname, 'vss-extension.json')
     var manifest = fileToJson(manifestPath);
     manifest.files = taskList.map(function (t) { return { path: '_build/Tasks/' + t }; });
@@ -860,6 +861,12 @@ CLI.genManifest = function() {
         }
       }; 
     });
+
+    var manifestContent = JSON.stringify(manifest, null, 2) + '\n';
+    if (process.platform == 'win32') {
+        manifestContent = manifestContent.replace(/\n/g, os.EOL);
+    }
+    fs.writeFileSync(manifestPath, manifestContent);
 }
 
 CLI.prepareExtensionPublish = function() {

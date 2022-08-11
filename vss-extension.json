@@ -10,10 +10,14 @@
     }
   ],
   "description": "Tasks adopted from the Azure repository",
-  "categories": ["Azure Pipelines"],
+  "categories": [
+    "Azure Pipelines"
+  ],
   "files": [],
   "contributions": [],
-  "galleryFlags": ["Preview"],
+  "galleryFlags": [
+    "Preview"
+  ],
   "repository": {
     "type": "git",
     "uri": "https://github.com/svrooij/azure-pipelines-tasks"
