@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "adopted-azure-tasks",
   "name": "Adopted Azure pipeline tasks",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "publisher": "svrooij",
   "targets": [
     {

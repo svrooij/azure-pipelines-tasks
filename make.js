@@ -8,6 +8,7 @@ var path = require('path');
 var semver = require('semver');
 var util = require('./make-util');
 var admzip = require('adm-zip');
+var uuid = require('uuid-hash')
 
 // util functions
 var cd = util.cd;
@@ -819,10 +820,10 @@ CLI.adopt = function() {
         ensureExists(taskPath);
 
         var taskDef = fileToJson(path.join(taskPath, 'task.json'));
-        if (taskDef.id === '15241500-abf7-4541-ba67-9af82f758b28') return;
+        if (taskDef.friendlyName.indexOf(' (a)') > -1) return;
 
-        taskDef.id = '15241500-abf7-4541-ba67-9af82f758b28';
         taskDef.name = 'A' + taskDef.name;
+        taskDef.id = uuid.createHash().update(taskDef.name).digest();
         taskDef.friendlyName = taskDef.friendlyName + " (a)";
         taskDef.description = taskDef.description + " (bleeding edge version)";
         taskDef.helpMarkDown = taskDef.helpMarkDown + " [Adopted](https://github.com/svrooij/azure-pipelines-tasks/tree/custom-deploy-for-stale-pr#azure-pipelines-tasks)"
@@ -876,6 +877,13 @@ CLI.prepareExtensionPublish = function() {
         // I dont want to do this, but visual studio extensions require all parts to not have spaces
         rm('-f', path.join(buildTaskPath, 'node_modules', 'azure-pipelines-tasks-azure-arm-rest-v2','openssl', 'OpenSSL License.txt'))
     })
+}
+
+CLI.publishExtension = function() {
+    CLI.adopt();
+    CLI.build();
+    CLI.prepareExtensionPublish();
+    CLI.genManifest();
 }
 
 var command  = argv._[0];
