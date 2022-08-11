@@ -1,4 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
     "id": "94A74903-F93F-4075-884F-DC11F34058B4",
     "name": "AzureResourceManagerTemplateDeployment",
     "friendlyName": "ARM template deployment",
@@ -44,7 +45,7 @@
             "type": "pickList",
             "label": "Deployment scope",
             "defaultValue": "Resource Group",
-            "required": "true",
+            "required": true,
             "groupName": "AzureDetails",
             "helpMarkDown": "Deployment scope of the deployment. To know more abour deployment scopes, refer this [link](https://docs.microsoft.com/bs-latn-ba/Azure/azure-resource-manager/resource-group-template-deploy-rest#deployment-scope)",
             "options": {

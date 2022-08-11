@@ -203,5 +203,9 @@
         "task.json",
         "task.loc.json",
         "Tests"
+    ],
+    "adoptedTasks": [
+        "AzureResourceGroupDeploymentV2",
+        "AzureResourceManagerTemplateDeploymentV3"
     ]
 }

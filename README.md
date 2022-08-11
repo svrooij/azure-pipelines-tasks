@@ -1,12 +1,32 @@
 # Azure Pipelines Tasks
 ![Tasks](/taskbanner.png "Tasks")
 
+## Adopted tasks
+
+This repo is a clone of the official Microsoft Azure Pipeline tasks. I decided it was time to adopt some tasks because [my pr](https://github.com/microsoft/azure-pipelines-tasks/pull/16283) was open for 3 months without any feedback and I needed to updated version.
+
+Not sure how this works with licenses, I'm not trying to infringe anyone. Just looking for a way to start using my updated version of some tasks.
+
+If you're facing the same issue, give me a PR with your changes. Be sure to also change the `make-options.json` file to include your task(s).
+
+```json
+{
+  ...
+  "adoptedTasks": [
+      "AzureResourceGroupDeploymentV2",
+      "AzureResourceManagerTemplateDeploymentV3"
+  ]
+}
+```
+
 ## Overview
+
 This repo contains the tasks that are provided out-of-the-box with Azure Pipelines and Team Foundation Server.
 
 This provides open examples on how we write tasks which will help you write other tasks which can be uploaded to your account or server.  See **Writing Tasks** below.
 
 ## Status
+
 |   | Build & Test |
 |---|:-----:|
 |![Win](docs/res/win_med.png) **Windows**|[![Build & Test][win-build-badge]][win-build]| 

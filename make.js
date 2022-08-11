@@ -83,7 +83,11 @@ if (argv.task) {
     }
 } else {
     // load the default list
-    taskList = fileToJson(makeOptionsPath).tasks;
+    //taskList = fileToJson(makeOptionsPath).tasks;
+
+    // load only the Adopted tasks
+    // @svrooij 2022-08-11
+    taskList = fileToJson(makeOptionsPath).adoptedTasks;
 }
 
 // set the runner options. should either be empty or a comma delimited list of test runners.
