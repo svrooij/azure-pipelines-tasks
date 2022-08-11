@@ -823,7 +823,7 @@ CLI.adopt = function() {
 
         taskDef.id = '15241500-abf7-4541-ba67-9af82f758b28';
         taskDef.name = 'A' + taskDef.name;
-        taskDef.friendlyName = taskDef.friendlyName + " (adopted)";
+        taskDef.friendlyName = taskDef.friendlyName + " (a)";
         taskDef.description = taskDef.description + " (bleeding edge version)";
         taskDef.helpMarkDown = taskDef.helpMarkDown + " [Adopted](https://github.com/svrooij/azure-pipelines-tasks/tree/custom-deploy-for-stale-pr#azure-pipelines-tasks)"
 
@@ -833,8 +833,41 @@ CLI.adopt = function() {
         }
         fs.writeFileSync(path.join(taskPath, 'task.json'), taskContent);
 
+        taskPackage = fileToJson(path.join(taskPath, 'package.json'))
+        taskPackage.name = 'A' + taskPackage.name;
+
+        var taskPackageContent = JSON.stringify(taskPackage, null, 2) + '\n';
+        if (process.platform == 'win32') {
+            taskPackageContent = taskPackageContent.replace(/\n/g, os.EOL);
+        }
+        fs.writeFileSync(path.join(taskPath, 'package.json'), taskPackageContent);
+
         createTaskLocJson(taskPath);
         createResjson(taskDef, taskPath);
+    })
+}
+
+CLI.genManifest = function() {
+    var manifestPath = path.join(__dirname, 'vss-extension.json')
+    var manifest = fileToJson(manifestPath);
+    manifest.files = taskList.map(function (t) { return { path: '_build/Tasks/' + t }; });
+    manifest.contributions = taskList.map(function (t) { return { 
+        id: 'A' + t,
+        type: 'ms.vss-distributed-task.task',
+        targets: ['ms.vss-distributed-task.tasks'],
+        properties: {
+            name: '_build/Tasks/' + t
+        }
+      }; 
+    });
+}
+
+CLI.prepareExtensionPublish = function() {
+    taskList.forEach(function (t) {
+
+        var buildTaskPath = path.join(buildTasksPath, t);
+        // I dont want to do this, but visual studio extensions require all parts to not have spaces
+        rm('-f', path.join(buildTaskPath, 'node_modules', 'azure-pipelines-tasks-azure-arm-rest-v2','openssl', 'OpenSSL License.txt'))
     })
 }
 

@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "adopted-azure-tasks",
   "name": "Adopted Azure pipeline tasks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "svrooij",
   "targets": [
     {
@@ -11,32 +11,8 @@
   ],
   "description": "Tasks adopted from the Azure repository",
   "categories": ["Azure Pipelines"],
-  "files": [
-    {
-      "path": "Tasks/AzureResourceGroupDeploymentV2"
-    },
-    {
-      "path": "Tasks/AzureResourceManagerTemplateDeploymentV3"
-    }
-  ],
-  "contributions": [
-    {
-      "id": "AzureResourceGroupDeploymentV2",
-      "type": "ms.vss-distributed-task.task",
-      "targets": ["ms.vss-distributed-task.tasks"],
-      "properties": {
-        "name": "Tasks/AzureResourceGroupDeploymentV2"
-      }
-    },
-    {
-      "id": "AzureResourceManagerTemplateDeploymentV3",
-      "type": "ms.vss-distributed-task.task",
-      "targets": ["ms.vss-distributed-task.tasks"],
-      "properties": {
-        "name": "Tasks/AzureResourceManagerTemplateDeploymentV3"
-      }
-    }
-  ],
+  "files": [],
+  "contributions": [],
   "galleryFlags": ["Preview"],
   "repository": {
     "type": "git",

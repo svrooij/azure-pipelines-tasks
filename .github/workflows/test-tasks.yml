@@ -31,11 +31,23 @@ jobs:
         name: Installing tfx-cli
       - run: npm ci
         name: Installing dependencies
+
       - run: node make.js adopt
         name: Adopting tasks (change name)
+
+      - run: node make.js build
+        name: Building tasks
+
+      - run: node make.js prepareExtensionPublish
+        name: Fixing artifacts (remove files with spaces)
+
+      - run: node make.js genManifest
+        name: Adding adopted tasks to manifest
+
       - run: tfx extension create --manifest-globs vss-extension.json
         name: Packaging tasks
+
       - uses: actions/upload-artifact@v3
         with:
-          name: extension
+          name: Visual_studio_extension_files
           path: ./*.vsix
