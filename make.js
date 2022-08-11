@@ -811,6 +811,33 @@ CLI.gensprintlyzip = function(/** @type {{ sprint: string; outputdir: string; de
     console.log('\n# Completed creating sprintly zip.');
 }
 
+CLI.adopt = function() {
+    taskList.forEach(function(taskName) {
+        banner('Adopting: ' + taskName);
+
+        var taskPath = path.join(tasksPath, taskName);
+        ensureExists(taskPath);
+
+        var taskDef = fileToJson(path.join(taskPath, 'task.json'));
+        if (taskDef.id === '15241500-abf7-4541-ba67-9af82f758b28') return;
+
+        taskDef.id = '15241500-abf7-4541-ba67-9af82f758b28';
+        taskDef.name = 'A' + taskDef.name;
+        taskDef.friendlyName = taskDef.friendlyName + " (adopted)";
+        taskDef.description = taskDef.description + " (bleeding edge version)";
+        taskDef.helpMarkDown = taskDef.helpMarkDown + " [Adopted](https://github.com/svrooij/azure-pipelines-tasks/tree/custom-deploy-for-stale-pr#azure-pipelines-tasks)"
+
+        var taskContent = JSON.stringify(taskDef, null, 2) + '\n';
+        if (process.platform == 'win32') {
+            taskContent = taskContent.replace(/\n/g, os.EOL);
+        }
+        fs.writeFileSync(path.join(taskPath, 'task.json'), taskContent);
+
+        createTaskLocJson(taskPath);
+        createResjson(taskDef, taskPath);
+    })
+}
+
 var command  = argv._[0];
 
 if (typeof CLI[command] !== 'function') {

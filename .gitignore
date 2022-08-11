@@ -217,3 +217,5 @@ ModelManifest.xml
 /Package
 LoadTest.code-workspace
 .idea/
+
+svrooij.**.vsix

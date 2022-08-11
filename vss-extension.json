@@ -1,0 +1,45 @@
+{
+  "manifestVersion": 1,
+  "id": "adopted-azure-tasks",
+  "name": "Adopted Azure pipeline tasks",
+  "version": "0.0.3",
+  "publisher": "svrooij",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Tasks adopted from the Azure repository",
+  "categories": ["Azure Pipelines"],
+  "files": [
+    {
+      "path": "Tasks/AzureResourceGroupDeploymentV2"
+    },
+    {
+      "path": "Tasks/AzureResourceManagerTemplateDeploymentV3"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "AzureResourceGroupDeploymentV2",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "Tasks/AzureResourceGroupDeploymentV2"
+      }
+    },
+    {
+      "id": "AzureResourceManagerTemplateDeploymentV3",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "Tasks/AzureResourceManagerTemplateDeploymentV3"
+      }
+    }
+  ],
+  "galleryFlags": ["Preview"],
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/svrooij/azure-pipelines-tasks"
+  }
+}
